@@ -1,3 +1,3 @@
 # Demo of Fetch API REST calls
-## Backend for demo Minimal API .net6
-### https://github.com/mustbebuilt/SimpleAPI
+Backend used is demo Minimal API .net6 available at:
+https://github.com/mustbebuilt/SimpleAPI
