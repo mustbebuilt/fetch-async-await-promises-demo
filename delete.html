@@ -20,7 +20,7 @@
       <main>
         <section>
           <h2>Delete <span id="filmTitle""></span></h2>
-          <form id="editForm">
+          <form id="deleteForm">
             <input type="hidden" name="filmID" id="filmID" />
 
             <div>
@@ -63,7 +63,7 @@
 
       // Delete Form
 
-      document.getElementById("editForm").addEventListener("submit", (ev) => {
+      document.getElementById("deleteForm").addEventListener("submit", (ev) => {
         ev.preventDefault();
         fetch(api, {
           method: "DELETE",
