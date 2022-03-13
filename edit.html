@@ -85,9 +85,9 @@
     (function () {
       let urlParams = new URLSearchParams(window.location.search);
       let filmID = urlParams.get("filmID");
-      let api = `http://movieapishu.azurewebsites.net/api/films/${filmID}`;
+      //let api = `http://movieapishu.azurewebsites.net/api/films/${filmID}`;
+      let api = `https://mustbebuilt.co.uk/SHU/WAD/demo/php-api/films.php?filmID=${filmID}`;
       //let api = "http://localhost:5235/api/films";
-      //let api = "data/films.json";
       let displayList = [];
       async function getData() {
         const response = await fetch(api);
@@ -136,7 +136,8 @@
         })
           .then((response) => response.status)
           .then((status) => {
-            if (status == 202) {
+            console.info(status);
+            if (status == 202 || status == 200) {
               document.getElementById("resp").innerText = "Updated";
             }
           });
