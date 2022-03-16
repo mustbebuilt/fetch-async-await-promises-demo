@@ -52,10 +52,10 @@
           // change from obj.filmID to obj._id for MongoDb
           document
             .getElementById("edit")
-            .setAttribute("href", `edit.html?filmID=${myJson.filmID}`);
+            .setAttribute("href", `edit.html?filmID=${myJson._id}`);
           document
             .getElementById("delete")
-            .setAttribute("href", `delete.html?filmID=${myJson.filmID}`);
+            .setAttribute("href", `delete.html?filmID=${myJson._id}`);
         })
         .catch(() => console.log("damn that Jason"));
     })();
