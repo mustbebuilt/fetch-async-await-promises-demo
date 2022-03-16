@@ -25,14 +25,11 @@
   <script>
     (function () {
       // MongoDb
-      let api = "https://shumjchub.azurewebsites.net/api/films";
-      //let api = "https://nodeshufilms.azurewebsites.net/films";
-      // PHP
-      //let api = "https://mustbebuilt.co.uk/SHU/WAD/demo/php-api/films.php";
+      let api = "https://nodeshufilms.azurewebsites.net/api/films";
       // .net
       //let api = "http://movieapishu.azurewebsites.net/api/films";
-      //let api = "http://localhost:5235/api/films";
-      //let api = "data/films.json";
+      // PHP
+      //let api = "https://mustbebuilt.co.uk/SHU/WAD/demo/php-api/films.php";
       let displayList = [];
       async function getData() {
         const response = await fetch(api);
