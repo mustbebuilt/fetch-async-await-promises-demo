@@ -21,7 +21,7 @@
         <section>
           <h2>Edit</h2>
           <form id="editForm">
-            <input type="hidden" name="_id" id="_id" />
+            <input type="hidden" name="filmID" id="filmID" />
             <div>
               <label for="filmTitle">Film Title</label>
               <input type="text" name="filmTitle" id="filmTitle" />
@@ -101,7 +101,7 @@
         .then((myJson) => {
           console.dir(myJson);
           // change from obj.filmID to obj._id for MongoDb
-          document.getElementById("_id").value = myJson._id;
+          document.getElementById("filmID").value = myJson._id;
           document.getElementById("filmTitle").value = myJson.filmTitle;
           document.getElementById("filmCertificate").value =
             myJson.filmCertificate;
