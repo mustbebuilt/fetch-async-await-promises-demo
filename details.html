@@ -49,6 +49,7 @@
           document.getElementById("filmTitle").innerText = myJson.filmTitle;
           document.getElementById("filmDescription").innerText =
             myJson.filmDescription;
+          // change from obj.filmID to obj._id for MongoDb
           document
             .getElementById("edit")
             .setAttribute("href", `edit.html?filmID=${myJson.filmID}`);

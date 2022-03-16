@@ -44,6 +44,7 @@
 
           myJson.forEach((obj) => {
             console.log(obj);
+            // change from obj.filmID to obj._id for MongoDb
             displayList.push(
               `<li><a href="details.html?filmID=${obj._id}">${obj.filmTitle}</a></li>`
             );
