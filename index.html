@@ -25,11 +25,11 @@
   <script>
     (function () {
       // MongoDb
-      let api = "https://nodeshufilms.azurewebsites.net/api/films";
+      // let api = "https://nodeshufilms.azurewebsites.net/api/films";
       // .net
       //let api = "http://movieapishu.azurewebsites.net/api/films";
       // PHP
-      //let api = "https://mustbebuilt.co.uk/SHU/WAD/demo/php-api/films.php";
+      let api = "https://www.mustbebuilt.co.uk/SHU/films-api/api.php";
       let displayList = [];
       async function getData() {
         const response = await fetch(api);
@@ -46,7 +46,7 @@
             console.log(obj);
             // change from obj.filmID to obj._id for MongoDb
             displayList.push(
-              `<li><a href="details.html?filmID=${obj._id}">${obj.filmTitle}</a></li>`
+              `<li><a href="details.html?filmID=${obj.filmID}">${obj.filmTitle}</a></li>`
             );
           });
           document.getElementById("dom").innerHTML = displayList.join("");
