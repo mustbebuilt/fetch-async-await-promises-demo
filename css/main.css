@@ -23,6 +23,9 @@ menu>li>a{
 main>div{
   display:flex;
 }
+main>div>section{
+  flex:0 0 50%;
+}
 
 
 .waiting {

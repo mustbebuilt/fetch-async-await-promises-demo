@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>XHR with JSON Example</title>
+    <title>XMLHttpRequest (Syncronous) Demo</title>
     <link rel="stylesheet" href="css/main.css" />
   </head>
 
   <body>
     <div class="container">
       <header>
-        <h1>XHR Demo</h1>
+        <h1>XMLHttpRequest (Syncronous) Demo</h1>
         <nav>
           <menu>
             <li><a href="async-await.html">Async / Await</a></li>
@@ -24,7 +24,7 @@
             <li><a href="xhr-slow.html">XMLHttpRequest (Slow API)</a></li>
             <li><a href="xhr-sync.html">XMLHttpRequest (Synchronous)</a></li>
             <li>
-              <a href="xhr-sync-slow.html.html"
+              <a href="xhr-sync-slow.html"
                 >XMLHttpRequest (Synchronous, Slow API)</a
               >
             </li>
@@ -32,14 +32,51 @@
         </nav>
       </header>
       <main>
-        <section>
-          <div>
-            <p>Example uses original <code>XMLHttpRequest</code> approach.</p>
-          </div>
-          <div class="waiting"></div>
-          <div class="msg"></div>
-          <ul id="dom"></ul>
-        </section>
+        <div>
+          <section>
+            <div class="waiting">
+              <div><div>0</div></div>
+            </div>
+            <div class="msg"></div>
+            <ul id="dom"></ul>
+          </section>
+          <section>
+            <h2>Explanation</h2>
+            <p>
+              Prior to <code>fetch</code> the vanilla JavaScript method for
+              making API calls was <code>XMLHttpRequest</code>.
+            </p>
+            <p>
+              As the name implies <code>XMLHttpRequest</code> was originally
+              designed for making API calls to retrieve XML data. However, it
+              was also capable of retrieving JSON data.
+            </p>
+            <h3>Syncronous</h3>
+            <p>
+              With <code>XMLHttpRequest</code> an object is created and then the
+              <code>open</code> method is called to trigger the request.
+            </p>
+            <p>
+              The <code>open()</code> method takes 3 parameters:
+              <code>method</code>, <code>url</code>, and <code>async</code>.
+            </p>
+            <p>
+              Within these options the <code>XMLHttpRequest</code> can be send
+              for example:
+            </p>
+            <p>
+              <code>myXHR.open('GET', 'someapi.com/someendpoint', false);</code>
+            </p>
+            <p>
+              The third parameter <code>false</code> makes the request
+              synchronous.
+            </p>
+            <p>
+              A synchronous request will wait for the server to respond before
+              continuing and stop the <code>setInterval</code> from running.
+            </p>
+          </section>
+        </div>
       </main>
     </div>
   </body>
@@ -49,7 +86,8 @@
       const myXHR = new XMLHttpRequest();
       let displayList = [];
       const msg = document.querySelector(".msg");
-      const waiting = document.querySelector(".waiting");
+      const waiting = document.querySelector(".waiting>div>div");
+      const waitingContainer = document.querySelector(".waiting>div");
       const timer = setInterval(() => {
         seconds++;
         waiting.textContent = seconds;
@@ -62,6 +100,9 @@
           // parse to make an object
           let myJson = JSON.parse(myXHR.responseText);
           displayData(myJson);
+          waiting.style.animation = "none";
+          waitingContainer.style.animation = "none";
+          waitingContainer.style.borderTopColor = "#7577dd";
           clearInterval(timer);
         }
       };

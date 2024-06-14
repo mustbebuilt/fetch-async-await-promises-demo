@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
-    <title>Api Demos</title>
+    <title>Async Await Demo</title>
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>Fetch REST Demos</h1>
+        <h1>Async Await Demo</h1>
         <nav>
           <menu>
             <li><a href="async-await.html">Async / Await</a></li>
@@ -31,11 +31,49 @@
         </nav>
       </header>
       <main>
-        <section>
-          <div class="waiting"></div>
-          <div class="msg"></div>
-          <ul id="dom"></ul>
-        </section>
+        <div>
+          <section>
+            <div class="waiting">
+              <div><div>0</div></div>
+            </div>
+            <div class="msg"></div>
+            <ul id="dom"></ul>
+          </section>
+          <section>
+            <h2>Explanation</h2>
+            <h3>Asyncronous</h3>
+            <p>
+              Fetch calls are asyncronous in that they return a Promise. This is
+              because they are not blocking and allow for other tasks to run.
+            </p>
+            <p>
+              This example should run quickly but to see the non-blocking effect
+              look at the
+              <a href="async-await-slow.html">Async / Await (Slow API)</a>
+              example.
+            </p>
+            <p>
+              When calling an API, it returns a Promise, as the data may not be
+              immediately available.
+            </p>
+            <h3>Async / Await</h3>
+            <p>
+              This example uses the <code>async/await</code> statements that are
+              syntactic sugar created on top of JavaScript Promises. They allow
+              developers to write Promise-based code as if it were synchronous,
+              but without blocking the main thread.
+            </p>
+            <p>
+              Variables and Constants can be prefixed with <code>await</code> to
+              wait for the Promise to resolve.
+            </p>
+            <p>Example: <code>await myPromise</code></p>
+            <p>
+              When using <code>await</code> the function will need to be defined
+              as <code>async</code> to indicate it is asynchronous.
+            </p>
+          </section>
+        </div>
       </main>
     </div>
   </body>
@@ -44,7 +82,8 @@
       const api = "https://www.mustbebuilt.co.uk/SHU/films-api/basic-api.php";
       let displayList = [];
       const msg = document.querySelector(".msg");
-      const waiting = document.querySelector(".waiting");
+      const waiting = document.querySelector(".waiting>div>div");
+      const waitingContainer = document.querySelector(".waiting>div");
       let seconds = 0;
       //
       const timer = setInterval(() => {
@@ -55,6 +94,9 @@
         const response = await fetch(api);
         const json = await response.json();
         clearInterval(timer);
+        waiting.style.animation = "none";
+        waitingContainer.style.animation = "none";
+        waitingContainer.style.borderTopColor = "#7577dd";
         return json;
       }
       getData()

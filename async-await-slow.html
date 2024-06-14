@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
-    <title>Api Demos</title>
+    <title>Async Await Slowed Demo</title>
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>Fetch REST Demos</h1>
+        <h1>Async Await Slowed Demo</h1>
         <nav>
           <menu>
             <li><a href="async-await.html">Async / Await</a></li>
@@ -41,11 +41,36 @@
           </section>
           <section>
             <h2>Explanation</h2>
+            <h3>Asyncronous</h3>
+            <p>
+              Fetch calls are asyncronous in that they return a Promise. This is
+              because they are not blocking and allow for other tasks to run.
+            </p>
+            <p>
+              This is shown in the demo as the API has been deliberately slowly
+              to take 5 seconds to respond. You can see that this does not stop
+              the <code>setInterval</code> from running which is been used to
+              count the number of seconds that the API has been called.
+            </p>
+            <p>
+              When calling an API, it returns a Promise, as the data may not be
+              immediately available.
+            </p>
+            <h3>Async / Await</h3>
             <p>
               This example uses the <code>async/await</code> statements that are
               syntactic sugar created on top of JavaScript Promises. They allow
               developers to write Promise-based code as if it were synchronous,
               but without blocking the main thread.
+            </p>
+            <p>
+              Variables and Constants can be prefixed with <code>await</code> to
+              wait for the Promise to resolve.
+            </p>
+            <p>Example: <code>await myPromise</code></p>
+            <p>
+              When using <code>await</code> the function will need to be defined
+              as <code>async</code> to indicate it is asynchronous.
             </p>
           </section>
         </div>
