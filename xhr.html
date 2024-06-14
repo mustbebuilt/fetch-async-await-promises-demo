@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>XHR with JSON Example</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <header>
+        <h1>XHR Demo</h1>
+        <nav>
+          <menu>
+            <li><a href="async-await.html">Async / Await</a></li>
+            <li>
+              <a href="async-await-slow.html">Async / Await (Slow API)</a>
+            </li>
+            <li><a href="promises.html">Promises</a></li>
+            <li><a href="promises-slow.html">Promises (Slow API)</a></li>
+            <li><a href="xhr.html">XMLHttpRequest</a></li>
+            <li><a href="xhr-slow.html">XMLHttpRequest (Slow API)</a></li>
+            <li><a href="xhr-sync.html">XMLHttpRequest (Synchronous)</a></li>
+            <li>
+              <a href="xhr-sync-slow.html"
+                >XMLHttpRequest (Synchronous, Slow API)</a
+              >
+            </li>
+          </menu>
+        </nav>
+      </header>
+      <main>
+        <section>
+          <div>
+            <p>Example uses original <code>XMLHttpRequest</code> approach.</p>
+          </div>
+          <div class="waiting"></div>
+          <div class="msg"></div>
+          <ul id="dom"></ul>
+        </section>
+      </main>
+    </div>
+  </body>
+  <script>
+    (function () {
+      const api = "https://www.mustbebuilt.co.uk/SHU/films-api/basic-api.php";
+      const myXHR = new XMLHttpRequest();
+      let displayList = [];
+      const msg = document.querySelector(".msg");
+      const waiting = document.querySelector(".waiting");
+      const timer = setInterval(() => {
+        seconds++;
+        waiting.textContent = seconds;
+      }, 1000);
+      let seconds = 0;
+      const showData = () => {
+        if (myXHR.readyState == 4) {
+          console.dir(myXHR.responseText);
+          // data from server is a string make into an object
+          // parse to make an object
+          let myJson = JSON.parse(myXHR.responseText);
+          displayData(myJson);
+          clearInterval(timer);
+        }
+      };
+      const displayData = (data) => {
+        data.map((obj) => {
+          displayList.push(`<li>${obj.filmTitle}</li>`);
+        });
+        document.getElementById("dom").innerHTML = displayList.join("");
+      };
+      myXHR.open("GET", api, true);
+      myXHR.addEventListener("readystatechange", showData);
+      myXHR.send();
+    })();
+  </script>
+</html>
