@@ -99,6 +99,9 @@
       const timer = setInterval(() => {
         seconds++;
         waiting.textContent = seconds;
+        let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+        waitingContainer.style.borderColor = "#" + randomColor;
+        waitingContainer.style.borderTopColor = "transparent";
       }, 1000);
       let seconds = 0;
       const showData = () => {
@@ -110,7 +113,7 @@
           displayData(myJson);
           waiting.style.animation = "none";
           waitingContainer.style.animation = "none";
-          waitingContainer.style.borderTopColor = "#7577dd";
+          waitingContainer.style.borderColor = "#7577dd";
           clearInterval(timer);
         }
       };
