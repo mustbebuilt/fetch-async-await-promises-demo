@@ -31,21 +31,35 @@
         </nav>
       </header>
       <main>
-        <section>
-          <div class="waiting"></div>
-          <div class="msg"></div>
-          <ul id="dom"></ul>
-        </section>
+        <div>
+          <section>
+            <div class="waiting">
+              <div><div>0</div></div>
+            </div>
+            <div class="msg"></div>
+            <ul id="dom"></ul>
+          </section>
+          <section>
+            <h2>Explanation</h2>
+            <p>
+              This example uses the <code>async/await</code> statements that are
+              syntactic sugar created on top of JavaScript Promises. They allow
+              developers to write Promise-based code as if it were synchronous,
+              but without blocking the main thread.
+            </p>
+          </section>
+        </div>
       </main>
     </div>
   </body>
   <script>
     (function () {
       const api =
-        "https://www.mustbebuilt.co.uk/SHU/films-api/slow-basic-api.php";
+        "https://www.mustbebuilt.co.uk/SHU/films-api/slow-basic-api.php?s=5";
       let displayList = [];
       const msg = document.querySelector(".msg");
-      const waiting = document.querySelector(".waiting");
+      const waiting = document.querySelector(".waiting>div>div");
+      const waitingContainer = document.querySelector(".waiting>div");
       let seconds = 0;
       //
       const timer = setInterval(() => {
@@ -56,6 +70,9 @@
         const response = await fetch(api);
         const json = await response.json();
         clearInterval(timer);
+        waiting.style.animation = "none";
+        waitingContainer.style.animation = "none";
+        waitingContainer.style.borderTopColor = "#7577dd";
         return json;
       }
       getData()

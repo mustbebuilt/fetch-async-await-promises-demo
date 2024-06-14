@@ -20,6 +20,11 @@ menu>li>a{
   font-size: 1.2rem;
 }
 
+main>div{
+  display:flex;
+}
+
+
 .waiting {
   font-family: 'Courier New', Courier, monospace;
   font-size: 2rem;
@@ -27,22 +32,43 @@ menu>li>a{
   text-align: center;
   color: #7577dd;
   font-weight: bold;
-  border: 5px solid #7577dd;
+  
 }
-/* .waiting{
+.waiting>div {
   margin: 0 auto;
-  width: 50px;
-  height: 50px;
-  border: 25px solid #7577dd;
+  width: 40px;
+  height: 40px;
+  border: 20px solid #7577dd;
   border-radius: 50%;
   border-top-color: transparent;
   animation: rotation 1s linear infinite;
+  position: relative;
 }
+
+.waiting>div>div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-360deg);
+  animation: inner-counter-rotation 1s linear infinite;
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
-}  */
+}
+
+@keyframes inner-counter-rotation {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
