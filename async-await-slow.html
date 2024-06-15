@@ -41,7 +41,7 @@
           </section>
           <section>
             <h2>Explanation</h2>
-            <h3>Asyncronous</h3>
+            <h3>Non-Blocking</h3>
             <p>
               Fetch calls are asyncronous in that they return a Promise. This is
               because they are not blocking and allow for other tasks to run.
@@ -51,6 +51,33 @@
               to take 5 seconds to respond. You can see that this does not stop
               the <code>setInterval</code> from running which is been used to
               count the number of seconds that the API has been called.
+            </p>
+            <h3>Asyncronous</h3>
+            <p>
+              When calling data via the network a developer does not know when
+              the response will be received.
+            </p>
+            <p>
+              Asyncronous means that the function will not wait for the response
+              from the server before continuing. This is known as non-blocking.
+            </p>
+            <p>
+              Fetch calls are asyncronous. They will return a promise when
+              called.
+            </p>
+            <p>
+              A promise is an object that represents the eventual completion or
+              failure of an asynchronous operation.
+            </p>
+            <p>
+              Asyncronous calls allow for other tasks to run but do require
+              careful handling of the response.
+            </p>
+            <p>
+              This example should run quickly but to see the non-blocking effect
+              look at the
+              <a href="async-await-slow.html">Async / Await (Slow API)</a>
+              example.
             </p>
             <p>
               When calling an API, it returns a Promise, as the data may not be
@@ -72,6 +99,58 @@
               When using <code>await</code> the function will need to be defined
               as <code>async</code> to indicate it is asynchronous.
             </p>
+            <p>A simplified version of the code here is:</p>
+            <div>
+              <code>
+                <pre>
+let api = "someapi";
+const getData = async () => {
+  const response = await fetch(api);
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  const json = await response.json();
+  return json;
+}
+const handleData = async () => {
+  try {
+    const myJson = await getData();
+    // add to DOM
+    console.dir(myJson);
+  } catch (error) {
+    console.error('Error loading JSON:', error);
+  }
+}
+
+handleData();
+</pre>
+</code>
+</div>
+              <p>This codes breaks down as:</p>
+              <ol>
+                <li>The <code>getData</code> arrow function is defined as <code>async</code> so that it use the <code>await</code> keyword.
+                  <ul>
+                  <li>This function fetches the data and awaits the <code>response</code>.</li>
+                  <li>If the <code>response</code> is not OK, it throws an error.</li>
+                  <li>The <code>response</code> is a promise so once resolved it is converted to a JSON object via the <code>json()</code> method.</li>
+                  </ul>
+                  </li>
+                <li>The <code>handleData</code> arrow function is defined as <code>async</code> so that it use the <code>await</code> keyword.</li>
+                  <ul>
+                  <li>This function calls <code>getData</code> and awaits its result.</li>
+                  <li>The try block handles the successful fetch and logs the JSON.</li>
+                  <li>The catch block handles any errors that might occur during the fetch or JSON parsing.</li>
+                  </ul>
+                </li>
+                <li>Call handleData:
+                  <ul>
+                    <li>This initiates the data fetching process when the script runs.</li>
+                  </ul>
+                </li>
+              </ol>
+ 
+    
+            </div>
           </section>
         </div>
       </main>
@@ -94,7 +173,7 @@
         waitingContainer.style.borderColor = "#" + randomColor;
         waitingContainer.style.borderTopColor = "transparent";
       }, 1000);
-      async function getData() {
+      const getData = async () => {
         const response = await fetch(api);
         const json = await response.json();
         clearInterval(timer);
@@ -102,21 +181,22 @@
         waitingContainer.style.animation = "none";
         waitingContainer.style.borderColor = "#7577dd";
         return json;
-      }
-      getData()
-        .then((myJson) => {
+      };
+      const handleData = async () => {
+        try {
+          const myJson = await getData();
           console.dir(myJson);
-
-          //
-
+          // add to DOM
           myJson.forEach((obj) => {
             console.log(obj);
-            // change from obj.filmID to obj._id for MongoDb
             displayList.push(`<li>${obj.filmTitle}</li>`);
           });
           document.getElementById("dom").innerHTML = displayList.join("");
-        })
-        .catch(() => (msg.textContent = "No data found"));
+        } catch (error) {
+          msg.textContent = "No data found";
+        }
+      };
+      handleData();
     })();
   </script>
 </html>
