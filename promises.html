@@ -41,34 +41,33 @@
           </section>
           <section>
             <h2>Explanation</h2>
-            <p>This example uses <code>fetch</code> which returns a promise.</p>
+
             <p>
-              A promise is an object that represents the eventual completion or
-              failure of an asynchronous operation.
+              This example uses <code>fetch</code>, which returns a promise.
+            </p>
+            <p>
+              A promise is an object that represents the eventual completion (or
+              failure) of an asynchronous operation.
             </p>
             <p>A promise has three states: pending, fulfilled, and rejected.</p>
-            <p>A promise can be in one of these states at any given time.</p>
             <p>
-              The value of a promise can be retrieved using the
+              A promise can be in only one of these states at any given time.
+            </p>
+            <p>
+              The result of a promise can be handled using the
               <code>.then</code> and <code>.catch</code> methods.
             </p>
             <p>
-              For example, if you try to access the value of a promise in the
-              <code>.then</code> method, it will not return anything until the
-              promise is fulfilled.
+              When you call <code>fetch</code>, it immediately returns a
+              promise. This promise resolves once the network request completes.
+              The promise doesn’t contain the data directly but instead resolves
+              with a <code>Response</code> object. Once fulfilled, the data can
+              be extracted using <code>response.json()</code>.
             </p>
             <p>
-              When a promise is fulfilled, it will return the value of the
-              promise but not the data from the server.
-            </p>
-            <p>
-              The promise is passed to a second <code>.then</code> method as a
-              callback function which is then able to access the data from the
-              server most commonly via the <code>.json</code> method.
-            </p>
-            <p>
-              Finally, once the data is received, it can be added to the DOM to
-              be displayed.
+              We chain a second <code>.then</code> method to allow the response
+              to be parsed as JSON, after which the parsed data can be accessed
+              and added to the DOM.
             </p>
           </section>
         </div>

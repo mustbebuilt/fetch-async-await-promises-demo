@@ -41,15 +41,7 @@
           </section>
           <section>
             <h2>Explanation</h2>
-            <p>This example uses <code>fetch</code> which returns a promise.</p>
-            <p>
-              A promise is an object that represents the eventual completion or
-              failure of an asynchronous operation.
-            </p>
-            <p>A promise has three states: pending, fulfilled, and rejected.</p>
-            <p>A promise can be in one of these states at any given time.</p>
 
-            <h3>Asyncronous</h3>
             <p>
               Fetch calls are asyncronous.This is because the promises are none
               blocking and allow for other tasks to run.
@@ -59,29 +51,6 @@
               to take 5 seconds to respond. You can see that this does not stop
               the <code>setInterval</code> from running which is been used to
               count the number of seconds that the API has been called.
-            </p>
-
-            <p>
-              The value of a promise can be retrieved using the
-              <code>.then</code> and <code>.catch</code> methods.
-            </p>
-            <p>
-              For example, if you try to access the value of a promise in the
-              <code>.then</code> method, it will not return anything until the
-              promise is fulfilled.
-            </p>
-            <p>
-              When a promise is fulfilled, it will return the value of the
-              promise but not the data from the server.
-            </p>
-            <p>
-              The promise is passed to a second <code>.then</code> method as a
-              callback function which is then able to access the data from the
-              server most commonly via the <code>.json</code> method.
-            </p>
-            <p>
-              Finally, once the data is received, it can be added to the DOM to
-              be displayed.
             </p>
           </section>
         </div>
