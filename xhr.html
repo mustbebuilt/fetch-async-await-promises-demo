@@ -124,7 +124,7 @@
         document.getElementById("dom").innerHTML = displayList.join("");
       };
       // set to true for ascynchronous
-      // blocks other code
+      // other code not blocked
       myXHR.open("GET", api, true);
       myXHR.addEventListener("readystatechange", showData);
       myXHR.send();
